@@ -1,0 +1,15 @@
+---
+# tasks file for web
+- name: Installing NGINX repo rpm
+  yum: name={{nginx_repo}}
+
+- name: Installing NGINX
+  yum: name=nginx state=latest
+    
+- name: Copy config NGINX
+  template: src=templates/default.conf dest=/etc/nginx/conf.d/default.conf
+  notify:
+   - restart nginx
+
+- name: Starting NGINX
+  service: name=nginx state=started

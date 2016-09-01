@@ -8,11 +8,15 @@
       Jenkins Delivery - http://localhost:8080/jenkins/view/Pet%20CD/
       Application URL - http://localhost:8080/mnt-lab/
 
+    jenkins_port: 8081
+    tomcat_port: 8082
+    nginx_port: 8080
+    java_version: 1.7.0
+
   pre_tasks:
   - debug: msg="Let's do this"
 
   roles:
-  - java
   - jenkins
   - tomcat
   - web
