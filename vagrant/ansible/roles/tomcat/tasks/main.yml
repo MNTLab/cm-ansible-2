@@ -1,3 +1,8 @@
 ---
 # tasks file for tomcat
-- debug: msg="Will install Tomcat"
+- name: installing tomcat
+  yum: name=tomcat state=installed
+- name: installing tomcat-webapps
+  yum: name=tomcat-webapps 
+- name: installing tomcat-admin-webapps
+  yum: name=tomcat-admin-webapps

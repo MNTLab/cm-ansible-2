@@ -1,3 +1,18 @@
 ---
 # tasks file for jenkins
-- debug: msg="Will install Jenkins"
+- rpm_key: state=present key=http://pkg.jenkins.io/redhat-stable/jenkins.io.key
+- name: downloading jenkins repo
+  get_url: url=http://pkg.jenkins.io/redhat-stable/jenkins.repo dest=/etc/yum.repos.d/jenkins.repo
+- name: installing jenkins
+  yum: name=jenkins state=latest
+- name: Add repository Maven
+  yum_repository:
+    name: Maven
+    description: Maven repo
+    baseurl: https://repos.fedorapeople.org/repos/dchen/apache-maven/epel-6Server/x86_64/ 
+    gpgcheck: no
+- name: installing Maven
+  yum: name=apache-maven state=latest
+- name: installing Git
+  yum: name=git state=latest
+
