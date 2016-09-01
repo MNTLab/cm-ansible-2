@@ -1,3 +1,6 @@
 ---
 # tasks file for java
 - debug: msg="Will install Java"
+################################----JAVA----###################################################
+- name: Instaling Java
+  yum: "name=java-1.7.0-openjdk-devel state=present"

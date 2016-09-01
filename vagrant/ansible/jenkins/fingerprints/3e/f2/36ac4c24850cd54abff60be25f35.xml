@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<fingerprint>
+  <timestamp>2016-08-31 17:46:52.85 UTC</timestamp>
+  <md5sum>3ef236ac4c24850cd54abff60be25f35</md5sum>
+  <fileName>javax.servlet:javax.servlet-api-3.0.1.jar</fileName>
+  <usages>
+    <entry>
+      <string>build/org.example:mnt-lab</string>
+      <ranges>7</ranges>
+    </entry>
+    <entry>
+      <string>build</string>
+      <ranges>7</ranges>
+    </entry>
+  </usages>
+  <facets/>
+</fingerprint>

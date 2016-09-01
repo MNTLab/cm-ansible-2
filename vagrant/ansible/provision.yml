@@ -12,7 +12,6 @@
   - debug: msg="Let's do this"
 
   roles:
-  - java
   - jenkins
   - tomcat
   - web

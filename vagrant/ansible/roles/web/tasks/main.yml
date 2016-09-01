@@ -1,3 +1,17 @@
 ---
 # tasks file for web
-- debug: msg="Will install Apache httpd + modjk"
+  - debug: msg="Will install Apache httpd + modjk"
+###############################-----NGINX----##################################################
+  - name: Installing NGINX repo rpm
+    yum: "name=http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm"
+
+  - name: Installing NGINX
+    yum: name=nginx state=latest
+
+  - name: Changing nginx config
+    template: src=configs/default.conf dest=/etc/nginx/conf.d/default.conf
+
+  - name: NGINX | Starting NGINX
+    service: name=nginx state=started enabled=yes
+                        
+

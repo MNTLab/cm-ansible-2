@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<fingerprint>
+  <timestamp>2016-08-31 17:46:52.86 UTC</timestamp>
+  <md5sum>1f40fb782a4f2cf78f161d32670f7a3a</md5sum>
+  <fileName>junit:junit-3.8.1.jar</fileName>
+  <usages>
+    <entry>
+      <string>build/org.example:mnt-lab</string>
+      <ranges>7</ranges>
+    </entry>
+    <entry>
+      <string>build</string>
+      <ranges>7</ranges>
+    </entry>
+  </usages>
+  <facets/>
+</fingerprint>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<fingerprint>
+  <timestamp>2016-08-31 17:46:52.80 UTC</timestamp>
+  <original>
+    <name>build/org.example:mnt-lab</name>
+    <number>7</number>
+  </original>
+  <md5sum>e3a8b00de2889675255f49001faf8272</md5sum>
+  <fileName>org.example:mnt-lab:pom.xml</fileName>
+  <usages>
+    <entry>
+      <string>build/org.example:mnt-lab</string>
+      <ranges>7</ranges>
+    </entry>
+    <entry>
+      <string>build</string>
+      <ranges>7</ranges>
+    </entry>
+  </usages>
+  <facets/>
+</fingerprint>
