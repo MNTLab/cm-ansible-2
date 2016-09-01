@@ -1,2 +1,5 @@
 ---
 # defaults file for web
+nginx_port: 8080
+tomcat_port: 8081
+jenkins_port: 8082
