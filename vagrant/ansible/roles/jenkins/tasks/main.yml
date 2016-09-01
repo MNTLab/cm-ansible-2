@@ -1,3 +1,32 @@
 ---
 # tasks file for jenkins
-- debug: msg="Will install Jenkins"
+
+
+    - shell: sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+    - shell: sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+
+    - name: Install jenkins, git.
+      yum: name={{ item }} state=present
+      with_items:
+        - jenkins
+        - git
+
+    - name: Copy jenkins, conf.xml.
+      template: src={{ item.src }} dest={{ item.dest }}
+      with_items:
+        - { src: 'jenkins', dest: '/etc/sysconfig/jenkins' }
+        - { src: 'config.xml', dest: '/var/lib/jenkins/config.xml' }
+   
+    - name: Jobs, plugins, maven config for jenkins.
+      copy: src={{ item }} dest=/var/lib/jenkins/ force=no
+      with_items:
+        - jobs
+        - plugins
+        - hudson.tasks.Maven.xml
+      notify: Changing Jenkins home directory ownership 
+       
+    - name: Edit sudoers
+      copy: src=jenkins-user dest=/etc/sudoers.d/ force=no
+
+    - name: Start jenkins
+      service: name=jenkins state=running
