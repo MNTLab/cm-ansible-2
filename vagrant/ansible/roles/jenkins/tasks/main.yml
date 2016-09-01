@@ -17,22 +17,15 @@
 - name: place jenkins config
   template: src=jenkins.j2 dest=/etc/sysconfig/jenkins
 
-- name: install plugins
+- name: get jenkins-cli.jar
   get_url:
-    url: localhost:8082/jenkins/jnlpJars/jenkins-cli.jar
-    dest: /tmp/jenkins-cli.jar
+    url: "localhost:{{ jenkins_port }}/jenkins/jnlpJars/jenkins-cli.jar"
+    dest: "{{ jenkins_jar_location }}"
 
-- name: plugin1 
-  command: java -jar /tmp/jenkins-cli.jar -s http://localhost:8082/jenkins install-plugin git
-
-- name: plugin2
-  command: java -jar /tmp/jenkins-cli.jar -s http://localhost:8082/jenkins install-plugin maven-plugin
-
-- name: plugin3
-  command: java -jar /tmp/jenkins-cli.jar -s http://localhost:8082/jenkins install-plugin delivery-pipeline-plugin
-
-- name: plugin4
-  command: java -jar /tmp/jenkins-cli.jar -s http://localhost:8082/jenkins install-plugin copyartifact
+- name: install plugins
+  command: "java -jar {{ jenkins_jar_location }} -s http://localhost:{{ jenkins_port }}/jenkins install-plugin {{ item }}" 
+  with_items: "{{ jenkins_plugins }}"
+  notify: restart jenkins
 
 - name: install maven for jenkins
   copy: src=hudson.tasks.Maven.xml dest=/var/lib/jenkins/ force=no
