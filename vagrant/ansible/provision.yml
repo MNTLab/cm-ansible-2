@@ -12,10 +12,9 @@
   - debug: msg="Let's do this"
 
   roles:
-  - java
-  - jenkins
   - tomcat
-  - web
+  - jenkins
+#  - web
 
   post_tasks:
   - debug: var=services_info.split('\n')
