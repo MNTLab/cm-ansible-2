@@ -1,0 +1,13 @@
+- name: unpack maven-3
+  unarchive: 
+    src="http://ftp.byfly.by/pub/apache.org/maven/binaries/apache-maven-3.2.2-bin.tar.gz" 
+    dest=/opt remote_src=yes copy=no 
+    creates=/opt/apache-maven-3.2.2/bin/mvn
+  
+- name: add to path
+  lineinfile: 
+      create=yes
+      dest=/etc/profile.d/mvn.sh
+      regexp='export PATH=/opt/apache-maven-3.2.2/bin:.*' 
+      line='export PATH=/opt/apache-maven-3.2.2/bin:$PATH'
+      mode=755

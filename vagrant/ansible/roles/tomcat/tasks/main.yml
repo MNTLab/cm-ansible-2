@@ -1,3 +1,14 @@
----
-# tasks file for tomcat
-- debug: msg="Will install Tomcat"
+- name: unpack tomcat
+  unarchive: 
+    src="http://ftp.byfly.by/pub/apache.org/tomcat/tomcat-7/v7.0.70/bin/apache-tomcat-7.0.70.tar.gz" 
+    dest=/opt remote_src=yes copy=no 
+    creates=/opt/apache-tomcat-7.0.70/bin/startup.sh
+
+- name: Install Tomcat conf
+  copy: src=server.xml dest=/opt/apache-tomcat-7.0.70/conf/server.xml mode=0755 force=yes
+
+- name: Install Tomcat init script
+  copy: src=tomcat dest=/etc/init.d/tomcat mode=0755 force=yes
+
+- name: Start Tomcat
+  service: name="tomcat" state=started enabled=yes

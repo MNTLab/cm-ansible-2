@@ -1,21 +1,11 @@
-- name: Provision with Ansible
+- name: Vagrant Ansible Provision
   hosts: all
   become: yes
 
-  vars:
-    services_info: |
-      Jenkins URL - http://localhost:8080/jenkins/
-      Jenkins Delivery - http://localhost:8080/jenkins/view/Pet%20CD/
-      Application URL - http://localhost:8080/mnt-lab/
-
-  pre_tasks:
-  - debug: msg="Let's do this"
-
   roles:
-  - java
-  - jenkins
+#  - git
+#  - java
+  - nginx
   - tomcat
-  - web
-
-  post_tasks:
-  - debug: var=services_info.split('\n')
+#  - maven
+  - jenkins

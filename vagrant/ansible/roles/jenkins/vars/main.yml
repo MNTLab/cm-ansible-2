@@ -1,2 +1,23 @@
----
-# vars file for jenkins
+plugins:
+- http://updates.jenkins-ci.org/latest/git-client.hpi
+- http://updates.jenkins-ci.org/latest/antisamy-markup-formatter.hpi
+- http://updates.jenkins-ci.org/latest/credentials.hpi
+- http://updates.jenkins-ci.org/latest/git.hpi
+- http://updates.jenkins-ci.org/latest/icon-shim.hpi
+- http://updates.jenkins-ci.org/latest/junit.hpi
+- http://updates.jenkins-ci.org/latest/mailer.hpi
+- http://updates.jenkins-ci.org/latest/matrix-auth.hpi
+- http://updates.jenkins-ci.org/latest/matrix-project.hpi
+- http://updates.jenkins-ci.org/latest/scm-api.hpi
+- http://updates.jenkins-ci.org/latest/script-security.hpi
+- http://updates.jenkins-ci.org/latest/ssh-credentials.hpi
+- http://updates.jenkins-ci.org/latest/structs.hpi
+- http://updates.jenkins-ci.org/latest/windows-slaves.hpi
+- http://updates.jenkins-ci.org/latest/workflow-scm-step.hpi
+- http://updates.jenkins-ci.org/latest/workflow-step-api.hpi
+
+configs:
+- { file: build, path: /var/lib/jenkins/jobs }
+- { file: deploy, path: /var/lib/jenkins/jobs }
+- { file: config.xml, path: /var/lib/jenkins }
+- { file: hudson.tasks.Maven.xml, path: /var/lib/jenkins }
