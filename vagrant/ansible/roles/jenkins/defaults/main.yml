@@ -1,2 +1,7 @@
 ---
 # defaults file for jenkins
+jenkins_port: 8082
+
+jenkins_plugins: []
+jenkins_jar_location: /tmp/jenkins-cli.jar
+jenkins_java_options: "-Djava.awt.headless=true -Djenkins.install.runSetupWizard=false"
