@@ -13,10 +13,11 @@ Roles:
  - [jenkins](vagrant/ansible/roles/jenkins). Main file in this role - [main.yml](vagrant/ansible/roles/jenkins/tasks/main.yml)
 
 Additional files:
- - [plugins for jenkins](vagrant/plugins/)
- - [jobs for jenkins](vagrant/jobs/)
- - [hudson.tasks.Maven.xml](vagrant/hudson.tasks.Maven.xml) - correct starting maven 
- - [jenkins-user](vagrant/jenkins-user) - add user rights
+ - [plugins for jenkins](vagrant/ansible/plugins/)
+ - [jobs for jenkins](vagrant/ansible/jobs/)
+ - [hudson.tasks.Maven.xml](vagrant/ansible/hudson.tasks.Maven.xml) - correct starting maven 
+ - [jenkins-user](vagrant/ansible/jenkins-user) - add user rights
+
 Screenshots of result: 
 ![1](https://github.com/MNTLab/cm-ansible-2/blob/Andrei_Kachan/resources/homer.png)
 ![0](https://github.com/MNTLab/cm-ansible-1/blob/Andrei_Kachan/resources/5.png)
