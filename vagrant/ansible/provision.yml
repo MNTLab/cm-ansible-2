@@ -2,20 +2,17 @@
   hosts: all
   become: yes
 
-  vars:
-    services_info: |
-      Jenkins URL - http://localhost:8080/jenkins/
-      Jenkins Delivery - http://localhost:8080/jenkins/view/Pet%20CD/
-      Application URL - http://localhost:8080/mnt-lab/
-
   pre_tasks:
   - debug: msg="Let's do this"
 
   roles:
-  - java
   - jenkins
   - tomcat
   - web
+  
+  vars:
+   tomcat_port: 10100
+   jenkins_port: 9090
+   nginx_port: 8080
 
-  post_tasks:
-  - debug: var=services_info.split('\n')
+
