@@ -1,3 +1,16 @@
 ---
 # tasks file for web
-- debug: msg="Will install Apache httpd + modjk"
+- debug: msg="Will install NGINX"
+
+- name: NGINX install rpm in yum
+  yum: name={{ nginx_repo }}
+
+- name: NGINX install
+  yum: name=nginx state=latest
+
+- name: NGINX copy config
+  template: src=default.conf dest=/etc/nginx/conf.d/default.conf
+  notify: enabled nginx
+
+- name: NGINX start
+  service: name=nginx state=running

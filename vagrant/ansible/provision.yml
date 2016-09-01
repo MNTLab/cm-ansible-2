@@ -3,19 +3,19 @@
   become: yes
 
   vars:
-    services_info: |
-      Jenkins URL - http://localhost:8080/jenkins/
-      Jenkins Delivery - http://localhost:8080/jenkins/view/Pet%20CD/
-      Application URL - http://localhost:8080/mnt-lab/
+   nginx_repo: http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
+   nginx_port: 8080
+   tomcat_port: 9080
+   jenkins_prefix: --prefix=/jenkins
+   jenkins_port: 8081 
 
   pre_tasks:
   - debug: msg="Let's do this"
 
   roles:
-  - java
   - jenkins
   - tomcat
   - web
 
   post_tasks:
-  - debug: var=services_info.split('\n')
+  - debug: msg="well done" 
