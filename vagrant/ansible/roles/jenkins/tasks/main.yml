@@ -13,12 +13,9 @@
     - git
 - name: JENKINS | changing jenkins user group
   user: name=jenkins groups=tomcat
-#- name: copy jenkins config
-#  template: src=jenkins dest=/etc/sysconfig/
-#  notify: restart jenkins
-
 - name: copying config files
   template: src=jenkins dest=/etc/sysconfig/
+  notify: restart jenkins
 - name: copying files
   copy: src={{ item.src }} dest={{ item.dest }} force={{ item.force| default("yes")}} owner=jenkins group=jenkins
   with_items:
