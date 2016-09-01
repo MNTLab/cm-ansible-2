@@ -11,13 +11,14 @@ Files:
 
 -  [provision.yml](vagrant/ansible/provision.yml)  
 
--  [Java role](vagrant/ansible/roles/java/)  
+-  [Java role](vagrant/ansible/roles/java/)
+
+-  [Tomcat role](vagrant/ansible/roles/tomcat/)
+
+-  [Web role](vagrant/ansible/roles/web/)
 
 -  [Jenkins role](vagrant/ansible/roles/jenkins/)  
 
--  [Tomcat role](vagrant/ansible/roles/tomcat/)  
-
--  [Web role](vagrant/ansible/roles/web/)
 
 Screenshots
 
