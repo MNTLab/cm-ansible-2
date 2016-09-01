@@ -1,11 +1,9 @@
-# cm-ansible-2
+# All done
 
-All done
+![Alt text](1.png "scr1")
 
-![Alt text](/vagrant/resources/1.png "scr1")
+![Alt text](2.png "scr1")
 
-![Alt text](/vagrant/resources/2.png "scr1")
+![Alt text](3.png "scr1")
 
-![Alt text](/vagrant/resources/3.png "scr1")
-
-![Alt text](/vagrant/resources/4.png "scr1")
+![Alt text](4.png "scr1")
