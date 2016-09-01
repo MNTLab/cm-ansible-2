@@ -1,3 +1,20 @@
 ---
 # tasks file for tomcat
 - debug: msg="Will install Tomcat"
+
+- name: install tomcat
+  yum: name=tomcat
+
+- name: install tomcat-webapps
+  yum: name=tomcat-webapps
+
+- name: place server.xml
+  template: src=server.xml.j2 dest=/etc/tomcat/server.xml
+
+- name: chmod webapps
+  file: 
+    path: /var/lib/tomcat/webapps
+    mode: 0777
+
+- name: start tomcat
+  service: name=tomcat state=started enabled=yes

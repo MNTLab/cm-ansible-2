@@ -1,3 +1,20 @@
 ---
 # tasks file for web
-- debug: msg="Will install Apache httpd + modjk"
+- debug: msg="Will install Nginx server"
+
+- name: add nginx-repo
+  yum:
+    name: http://nginx.org/packages/rhel/6/noarch/RPMS/nginx-release-rhel-6-0.el6.ngx.noarch.rpm
+
+- name: install nginx
+  yum:
+    name: nginx
+
+- name: place config
+  template: src=vhosts.j2 dest=/etc/nginx/conf.d/vhosts.conf
+
+- name: start nginx
+  service:
+    name: nginx
+    state: started
+
