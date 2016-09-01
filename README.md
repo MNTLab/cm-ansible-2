@@ -11,6 +11,7 @@ Roles:
  - [tomcat](vagrant/ansible/roles/tomcat). Main file in this role - [main.yml](vagrant/ansible/roles/tomcat/tasks/main.yml)
  
  - [jenkins](vagrant/ansible/roles/jenkins). Main file in this role - [main.yml](vagrant/ansible/roles/jenkins/tasks/main.yml)
+
 Additional files:
  - [plugins for jenkins](vagrant/plugins/)
  - [jobs for jenkins](vagrant/jobs/)
