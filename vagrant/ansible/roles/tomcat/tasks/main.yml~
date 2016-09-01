@@ -1,0 +1,23 @@
+---
+# tasks file for tomcat
+- name: check Java version
+  shell: java -version 2>&1 | grep version | awk '{print $3}' | sed 's/"//g' | sed 's/....$//'
+  register: java_version_installed
+
+- include: roles/java/tasks/main.yml
+  when: java_version_installed.stdout != java_version
+
+- name: Install Tomcat
+  yum: name=tomcat state=latest
+
+- name: Copy config Tomcat
+  template: src=templates/server.xml dest=/etc/tomcat/server.xml
+  notify:
+   - restart tomcat
+
+- name: permission to jenkins
+  user: jenkins group: tomcat
+
+
+- name: Start Tomcat
+  service: name=tomcat state=started
