@@ -1,3 +1,20 @@
 ---
-# tasks file for web
-- debug: msg="Will install Apache httpd + modjk"
+# tasks file for nginx
+ 
+   - debug: msg="Will install nginx"
+
+   - name: Installing nginx
+     yum: 
+       name: nginx
+       state: present
+
+   - name: Copying nginx config
+     template: 
+       src: default.conf
+       dest: /etc/nginx/conf.d/default.conf
+
+   - name: Start nginx
+     service: 
+       name: nginx
+       state: running
+

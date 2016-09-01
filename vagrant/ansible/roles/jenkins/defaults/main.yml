@@ -1,2 +1,5 @@
 ---
 # defaults file for jenkins
+
+jenkins_port: 8081
+jenkins_user: jenkins

@@ -1,2 +1,4 @@
 ---
 # defaults file for java
+
+jv_version: java-1.7.0-openjdk-devel
