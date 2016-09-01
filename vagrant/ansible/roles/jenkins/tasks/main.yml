@@ -1,3 +1,50 @@
 ---
 # tasks file for jenkins
 - debug: msg="Will install Jenkins"
+
+# Copying jenkins-users to sudoers file
+- name: Copying Jenkins-user sudoers file
+  copy: src=jenkins-user dest=/etc/sudoers.d/ force=no
+
+# Installing Git
+- name: Installing git
+  yum: name=git state=latest
+
+# Installing Jenkins
+- name: Wget Jenkins repo
+  command: wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+- name: Insatalling Jenkins rpm
+  command: rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+- name: Installing Jenkins
+  yum: name=jenkins
+- name: Jenkins config global
+  replace:
+   dest=/etc/sysconfig/jenkins
+   regexp={{item.regexp}}
+   replace={{item.replace}}
+  with_items:
+   - {regexp: 'JENKINS_ARGS=""', replace: 'JENKINS_ARGS="--prefix=/jenkins"'}
+   - {regexp: 'JENKINS_PORT="8080"', replace: 'JENKINS_PORT="{{ jenkins_port }}"'}
+   - {regexp: 'JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true"', replace: 'JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true -Djenkins.install.runSetupWizard=false"'}
+- name: Jenkins config
+  template: src={{item}} dest=/var/lib/jenkins/ force=yes
+  with_items:
+   - config.xml
+   - hudson.tasks.Maven.xml
+
+# Copying jobs & plugins
+- name: Jenkins jobs
+  copy: src=jobs dest=/var/lib/jenkins/ force=no
+- name: Jenkins plugins
+  copy: src=plugins dest=/var/lib/jenkins/ force=no
+- name: Copy config.xml
+  template: src=config.xml dest=/var/lib/jenkins/config.xml
+
+# Changing ownership
+- name: Change ownership for JENKINS_HOME
+  command: chown -R jenkins.jenkins /var/lib/jenkins
+
+# Starting Jenkins
+- debug: msg="Will start Jenkins"
+- name:  Starting Jenkins
+  service: name=jenkins state=running
