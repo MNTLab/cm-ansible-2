@@ -1,0 +1,23 @@
+---
+# tasks file for tomcat
+   - debug: msg="Will install Tomcat"
+
+   - name: Install tomcat and webapps
+     yum: name={{ item }} state=present
+     with_items:
+       - tomcat
+       - tomcat-webapps
+   
+   - name: Changing ownership of Tomcat's directory
+     file: path=/var/tomcat/ owner=tomcat group=tomcat state=directory recurse=yes
+
+   - name: Copy server.xml to tomcat
+     template:
+       src: server.xml
+       dest: /etc/tomcat/server.xml
+
+   - name: Starting tomcat
+     service: 
+       name: tomcat
+       state: running
+
