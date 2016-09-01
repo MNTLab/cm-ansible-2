@@ -4,18 +4,16 @@
 
   vars:
     services_info: |
-      Jenkins URL - http://localhost:8080/jenkins/
-      Jenkins Delivery - http://localhost:8080/jenkins/view/Pet%20CD/
-      Application URL - http://localhost:8080/mnt-lab/
-
-  pre_tasks:
-  - debug: msg="Let's do this"
+      Jenkins URL - http://localhost:{{nginx}}/jenkins/
+      Jenkins Delivery - http://localhost:{{nginx}}/jenkins/view/Pet%20CD/
+      Application URL - http://localhost:{{nginx}}/mnt-lab/
+    jenkins_port: 12000
+    tomcat_port: 15000
+    nginx_port: 8080
+    JAVA: "java-1.7.0-openjdk-devel"
 
   roles:
-  - java
   - jenkins
   - tomcat
-  - web
-
-  post_tasks:
-  - debug: var=services_info.split('\n')
+  - nginx 
+  - configuring

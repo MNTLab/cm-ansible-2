@@ -1,0 +1,31 @@
+---
+# tasks file for configuring
+
+- replace: dest=/etc/sysconfig/jenkins regexp='-Djava.awt.headless=true' replace='-Djava.awt.headless=true -Djenkins.install.runSetupWizard=false'
+- replace: dest=/etc/sysconfig/jenkins regexp='8080' replace='{{jenkins_port}}'
+- replace: dest=/usr/share/tomcat/conf/server.xml regexp='8080' replace='{{tomcat_port}}'
+- replace: dest=/etc/sysconfig/jenkins regexp='JENKINS_ARGS=""' replace='JENKINS_ARGS="--prefix=/jenkins"'
+
+# adding resources
+
+- template: src=/var/mnt-lab/cm-ansible-2/vagrant/resources/nginx.conf dest=/etc/nginx/nginx.conf
+- shell: cp -f -r /vagrant/plugins /var/lib/jenkins 
+- shell: mkdir -p /var/lib/jenkins/users/admin/
+- shell: cp -f /vagrant/resources/users/* /var/lib/jenkins/users/admin/
+- shell: cp -f /vagrant/resources/*.xml /var/lib/jenkins
+- shell: cp -f -r /vagrant/resources/jobs /var/lib/jenkins
+- shell: chown jenkins:jenkins -R /var/lib/jenkins
+
+#configuring nginx
+
+- replace: dest=/etc/nginx/nginx.conf regexp='port_nginx' replace='{{nginx_port}}'
+- replace: dest=/etc/nginx/nginx.conf regexp='port_tomcat' replace='{{tomcat_port}}'
+- replace: dest=/etc/nginx/nginx.conf regexp='port_jenkins' replace='{{jenkins_port}}'
+
+#starting
+- user: name=jenkins group=tomcat
+- service: name=nginx state=started
+- service: name=tomcat state=started
+- service: name=jenkins state=started
+
+

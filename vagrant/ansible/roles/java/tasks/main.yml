@@ -1,3 +1,4 @@
 ---
 # tasks file for java
-- debug: msg="Will install Java"
+- name: installing java
+  yum: name={{ JAVA }} state=installed
