@@ -1,3 +1,49 @@
 ---
 # tasks file for jenkins
 - debug: msg="Will install Jenkins"
+
+- name: Copying Jenkins-user sudoers file
+  copy: src=jenkins-user dest=/etc/sudoers.d/ force=no
+
+- name: Git install
+  yum: name=git state=latest
+
+- name: Wget Jenkins repo
+  command: wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+
+- name: Insatalling Jenkins rpm
+  command: rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+
+- name: Installing Jenkins
+  yum: name=jenkins
+
+- name: Changing Jenkins basic configuration 1 step
+  replace:
+    dest=/etc/sysconfig/jenkins
+    regexp='JENKINS_PORT="8080"'
+    replace='JENKINS_PORT="{{ jenkins_port }}"'
+
+- name: Changing Jenkins basic configuration 2 step
+  replace:
+    dest=/etc/sysconfig/jenkins
+    regexp='JENKINS_ARGS=""'
+    replace='JENKINS_ARGS="--prefix=/jenkins"'
+
+- name: Copy config.xml
+  template: src=config.xml dest=/var/lib/jenkins/config.xml
+
+- name: Copy Jenkins Jobs
+  copy: src=jobs dest=/var/lib/jenkins/ force=no
+
+- name: Plugins for Jenkins
+  copy: src=plugins dest=/var/lib/jenkins/ force=no
+
+- name: Install Maven for  jenkins
+  template: src=hudson.tasks.Maven.xml dest=/var/lib/jenkins/ force=no
+
+- name: Change ownership for JENKINS_HOME
+  command: chown -R jenkins.jenkins /var/lib/jenkins
+
+- name:  Starting Jenkins
+  service: name=jenkins state=running
+
