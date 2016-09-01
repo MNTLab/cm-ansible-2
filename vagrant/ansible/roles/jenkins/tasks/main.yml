@@ -1,3 +1,28 @@
----
-# tasks file for jenkins
-- debug: msg="Will install Jenkins"
+- name: install jenkins-2
+  yum: name=http://pkg.jenkins-ci.org/redhat-stable/jenkins-2.7.3-1.1.noarch.rpm state=present
+
+- name: copy confs
+  copy: src={{ item.file }} dest={{ item.path }} force=yes owner=jenkins group=jenkins
+  with_items:
+  - "{{ configs }}"
+  
+- name: add conf
+  copy: src=conf/jenkins dest=/etc/sysconfig force=yes
+
+- name: add sudoers
+  copy: src=jenkins dest=/etc/sudoers.d force=yes
+
+- name: plugins dir
+  file: path=/var/lib/jenkins/plugins state=directory mode=0755 owner=jenkins
+
+- name: Adding plugins
+  get_url:
+    url: "{{ item }}"
+    dest: /var/lib/jenkins/plugins/
+  with_items: 
+  - "{{ plugins }}"
+  become: yes
+  become_user: jenkins
+  
+- name: service jenkins-2
+  service: name="jenkins" state=restarted enabled=yes
