@@ -1,3 +1,21 @@
 ---
 # tasks file for tomcat
 - debug: msg="Will install Tomcat"
+
+- name: Installing Tomcat
+  yum: name=tomcat state=latest
+
+- name: Installing Tomcat-webapps
+  yum: name=tomcat-webapps state=latest
+
+- name: Changing Tomcat basic configuration 1 step
+  replace:
+    dest=/etc/tomcat/server.xml
+    regexp='<Connector port="8080"'
+    replace='<Connector port="{{ tomcat_port }}"'
+
+#- name: Copy config
+#  template: src=server.xml dest=/etc/tomcat/server.xml
+
+- name: TOMCAT | Starting Tomcat
+  service: name=tomcat state=running
