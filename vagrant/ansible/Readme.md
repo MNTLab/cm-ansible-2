@@ -1,6 +1,1 @@
-![imgs](res/pic/tomcat_result.png "imgs")
-![imgs](res/pic/jobs.png "imgs")
-![imgs](res/pic/petcd.png "imgs")
-![imgs](res/pic/console1.png "imgs")
-![imgs](res/pic/console2.png "imgs")
-![imgs](res/pic/console3.png "imgs")
+
