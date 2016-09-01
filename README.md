@@ -17,6 +17,7 @@ Additional files:
  - [jobs for jenkins](vagrant/ansible/jobs/)
  - [hudson.tasks.Maven.xml](vagrant/ansible/hudson.tasks.Maven.xml) - correct starting maven 
  - [jenkins-user](vagrant/ansible/jenkins-user) - add user rights
+ - [virtual.conf](vagrant/ansible/virtual.conf) - nginx conf
 
 Screenshots of result: 
 ![1](https://github.com/MNTLab/cm-ansible-2/blob/Andrei_Kachan/resources/homer.png)
