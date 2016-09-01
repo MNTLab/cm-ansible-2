@@ -4,10 +4,10 @@ Home Task
 ---
 
 [provision.yml](vagrant/ansible/provision.yml)  
-[Java role](vagrant/ansible/roles/java/README.md)  
-[Jenkins role](vagrant/ansible/roles/jenkins/README.md)  
-[Tomcat role](vagrant/ansible/roles/tomcat/README.md)  
-[Web role](vagrant/ansible/roles/web/README.md)
+[Java role](vagrant/ansible/roles/java/)  
+[Jenkins role](vagrant/ansible/roles/jenkins/)  
+[Tomcat role](vagrant/ansible/roles/tomcat/)  
+[Web role](vagrant/ansible/roles/web/)
 
 
 ![build](pics/build.png)
