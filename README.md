@@ -3,7 +3,7 @@ Task completed:
 
 I have implemented 4 roles:
 - [java](/vagrant/ansible/roles/java)  - [tasks/main.yml](/vagrant/ansible/roles/java/tasks/main.yml)
-- [nginx](/vagrant/ansible/roles/nginx)  - [tasks/main.yml](/vagrant/ansible/roles/nginx/tasks/main.yml)
+- [nginx](/vagrant/ansible/roles/web)  - [tasks/main.yml](/vagrant/ansible/roles/web/tasks/main.yml)
 - [tomcat](/vagrant/ansible/roles/tomcat)  - [tasks/main.yml](/vagrant/ansible/roles/tomcat/tasks/main.yml)
 - [jenkins](/vagrant/ansible/roles/jenkins)  - [tasks/main.yml](/vagrant/ansible/roles/jenkins/tasks/main.yml)
 
