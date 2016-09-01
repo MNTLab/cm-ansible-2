@@ -7,6 +7,7 @@
 
   - name: Copied Tomcat config
     template: src=configs/server.xml dest=/usr/share/tomcat/conf/server.xml
+    notify: Restart
 
   - name: Starting Tomcat
     service: name=tomcat state=started enabled=yes

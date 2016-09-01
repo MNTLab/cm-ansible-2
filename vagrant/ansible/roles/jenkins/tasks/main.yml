@@ -20,22 +20,26 @@
 
   - name: Jenkins config2
     template: src=configs/config.xml dest=/var/lib/jenkins/config.xml
+    notify: Restart
 
   - name: Jenkins jobs
     copy: src=configs/jobs dest=/var/lib/jenkins/ force=no
+    notify: Restart
 
   - name: Jenkins plugins
     copy: src=jenkins/plugins dest=/var/lib/jenkins/ force=no
+    notify: Restart
 
   - name: Jenkins maven
     copy: src=configs/hudson.tasks.Maven.xml dest=/var/lib/jenkins/ force=no
+    notify: Restart
 
   - name: Jenkins chown
     command: chown -R jenkins:jenkins /var/lib/jenkins
 
   - name: Jenkins sudo
     copy: src=configs/jenkins-user dest=/etc/sudoers.d/ force=no
-
+    notify: Restart
 
   - name: Jenkins starting
     service: name=jenkins state=started enabled=yes
