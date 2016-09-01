@@ -1,3 +1,15 @@
 ---
 # tasks file for tomcat
-- debug: msg="Will install Tomcat"
+
+    - name: Install tomcat
+      yum: name=tomcat state=present
+
+    - name: Copy server.xml
+      template: src=server.xml dest=/etc/tomcat/server.xml
+
+    - name: Install tomcat-webapps
+      yum: name=tomcat-webapps state=present
+
+    - name: Start tomcat
+      service: name=tomcat state=running
+
