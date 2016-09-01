@@ -1,3 +1,45 @@
 ---
 # tasks file for jenkins
-- debug: msg="Will install Jenkins"
+#############################------JENKINS----##########################################################
+  - debug: msg="Will install Jenkins"
+  
+  - name: Downloading Jenkins from repo
+    command: wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+
+  - name: Git install
+    yum: name=git state=latest
+
+  - name: Jenkins repo key
+    command: rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+
+  - name: Jenkins install
+    yum: name=jenkins state=latest
+
+  - name: Jenkins config1
+    template: src=configs/jenkins dest=/etc/sysconfig/jenkins
+
+  - name: Jenkins config2
+    template: src=configs/config.xml dest=/var/lib/jenkins/config.xml
+    notify: Restart
+
+  - name: Jenkins jobs
+    copy: src=configs/jobs dest=/var/lib/jenkins/ force=no
+    notify: Restart
+
+  - name: Jenkins plugins
+    copy: src=jenkins/plugins dest=/var/lib/jenkins/ force=no
+    notify: Restart
+
+  - name: Jenkins maven
+    copy: src=configs/hudson.tasks.Maven.xml dest=/var/lib/jenkins/ force=no
+    notify: Restart
+
+  - name: Jenkins chown
+    command: chown -R jenkins:jenkins /var/lib/jenkins
+
+  - name: Jenkins sudo
+    copy: src=configs/jenkins-user dest=/etc/sudoers.d/ force=no
+    notify: Restart
+
+  - name: Jenkins starting
+    service: name=jenkins state=started enabled=yes
