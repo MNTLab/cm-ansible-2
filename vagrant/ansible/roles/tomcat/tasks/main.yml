@@ -1,15 +1,15 @@
 ---
 # tasks file for tomcat
 
-    - name: Install tomcat
-      yum: name=tomcat state=present
+    - name: Install tomcat, tomcat-webapps.
+      yum: name={{ item }} state=present
+      with_items:
+        - tomcat
+        - tomcat-webapps
 
-    - name: Copy server.xml
+    - name: Copy server.xml.
       template: src=server.xml dest=/etc/tomcat/server.xml
 
-    - name: Install tomcat-webapps
-      yum: name=tomcat-webapps state=present
-
-    - name: Start tomcat
+    - name: Start tomcat.
       service: name=tomcat state=running
 

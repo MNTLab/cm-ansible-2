@@ -2,11 +2,11 @@
   hosts: all
   become: yes
 
-  vars:
-    nginx_port: 8080
-    tomcat_port: 9090
-    jenkins_port: 10100
-    java_version: java-1.7.0-openjdk-devel.x86_64
+ # vars:
+ #   nginx_port: 8080
+ #   tomcat_port: 9090
+ #   jenkins_port: 10100
+ #   java_version: java-1.7.0-openjdk-devel.x86_64
 
   pre_tasks:
   - debug: msg="Provision started."
