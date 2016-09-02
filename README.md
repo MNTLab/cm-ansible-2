@@ -8,3 +8,11 @@ We set up all roles of installing tomcat, nginx and jenkins
 We set up all inclusive files as (plugins jobs configs and etc to roles sources)
 
 We set up these roles at our provisioning file provision.yml
+
+![alt tag](https://github.com/MNTLab/cm-ansible-2/blob/yaraslau_karotkin/vagrant/ansible/screens/1.png)
+
+![alt tag](https://github.com/MNTLab/cm-ansible-2/blob/yaraslau_karotkin/vagrant/ansible/screens/2.png)
+
+![alt tag](https://github.com/MNTLab/cm-ansible-2/blob/yaraslau_karotkin/vagrant/ansible/screens/3.png)
+
+![alt tag](https://github.com/MNTLab/cm-ansible-2/blob/yaraslau_karotkin/vagrant/ansible/screens/4.png)
