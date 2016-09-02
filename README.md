@@ -1,3 +1,5 @@
+Student: Yaraslau Karotkin
+
 Here is an algorithm of provision by ansible using roles
 
 At first we know that tomcat includes jdk 1.7 dependecy, and it means that tomcat role should trigger java role as well.
