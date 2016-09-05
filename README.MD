@@ -8,6 +8,8 @@ Report
 
 [My branch link] (https://github.com/MNTLab/cm-ansible-2/tree/aliaksei_khurhin)
 
+Jenkins plugins are installed by downloading plugins. Job starts by token.
+
 The effect of 'vagrant up' command is the same like in previous labwork, but inside it is made by ansible roles.
 [Main playbook](/vagrant/ansible/provision.yml)
 all default variables from roles can be redefined here. Java role is present like dependency of tomcat and jenkins role. Web role depends on tomcat and jenkins.

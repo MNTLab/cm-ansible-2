@@ -21,26 +21,14 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.37">
-      <project>build</project>
-      <filter></filter>
-      <target></target>
-      <excludes></excludes>
-      <selector class="hudson.plugins.copyartifact.TriggeredBuildSelector">
-        <fallbackToLastSuccessful>true</fallbackToLastSuccessful>
-        <upstreamFilterStrategy>UseGlobalSetting</upstreamFilterStrategy>
-        <allowUpstreamDependencies>false</allowUpstreamDependencies>
-      </selector>
-      <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
-    </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
       <command>datetime=$(date)
-cat  &lt;&lt; EOF &gt; deploy-info.txt
+cat &lt;&lt; EOF &gt; deploy-info.txt
 Job name: ${JOB_NAME}
 Deployment job number: ${BUILD_NUMBER}
 Deployment timestamp: $datetime
 EOF
-cp /var/lib/jenkins/jobs/build/builds/lastSuccessfulBuild/archive/target/mnt-lab.war /var/lib/tomcat/webapps/
+cp /var/lib/jenkins/workspace/build/target/*.war /var/lib/tomcat/webapps/
 cp deploy-info.txt /var/lib/tomcat/webapps/</command>
     </hudson.tasks.Shell>
   </builders>
