@@ -7,15 +7,20 @@
       Jenkins URL - http://localhost:8080/jenkins/
       Jenkins Delivery - http://localhost:8080/jenkins/view/Pet%20CD/
       Application URL - http://localhost:8080/mnt-lab/
-
-  pre_tasks:
-  - debug: msg="Let's do this"
+    jenkins_port: 9090
+    tomcat_port: 9000
+    web_port: 8080
+    package_java: "java-1.7.0-openjdk-devel"
 
   roles:
-  - java
-  - jenkins
   - tomcat
+  - jenkins
   - web
 
   post_tasks:
+  - name: waiting jenkins to start correctly
+    pause: minutes=1
+  - name: triggering jenkins build job via token
+    uri: url=http://localhost:{{web_port}}/jenkins/job/build/build?token=azaza status_code=201
   - debug: var=services_info.split('\n')
+ 
