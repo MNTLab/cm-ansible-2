@@ -8,7 +8,7 @@ Report
 
 [My branch link] (https://github.com/MNTLab/cm-ansible-2/tree/aliaksei_khurhin)
 
-Jenkins plugins are installed by downloading plugins. Job starts by token.
+Jenkins plugins are installed by downloading *.hpi files. Build job starts by token.
 
 The effect of 'vagrant up' command is the same like in previous labwork, but inside it is made by ansible roles.
 [Main playbook](/vagrant/ansible/provision.yml)
